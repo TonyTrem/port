@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Page Title</title>
+</head>
+<body>
+
+  
+  <!-- Button Prompt -->
+  <!-- <button>Press me</button>
+
+  <script>
+    const button = document.querySelector("button");
+
+    function greet() {
+      const name = prompt("What is your name?");
+      alert(`Hello ${name}, nice to see you!`);
+    }
+
+    button.addEventListener("click", greet);
+  </script> -->
+
+
+  <!-- The Number() function converts anything passed to it into a number, if it can. -->
+  <!-- <script>
+    const myString = "123";
+    const myNum = Number(myString);
+    console.log(typeof myNum);
+  </script> -->
+  
+
+  <!-- Every number has a method called toString() that converts it to the equivalent string -->
+  <!-- <script>
+    const myNum2 = 123;
+    const myString2 = myNum2.toString();
+    console.log(typeof myString2);
+  </script> -->
+
+
+  <!-- Template literals -->
+  <!-- <script>
+    const greeting = "Hello";
+    const name = "Chris";
+    console.log(`${greeting}, ${name}`); // "Hello, Chris"
+  </script> -->
+
+
+  <!-- You can include JavaScript expressions in template literals, as well as simple variables, and the results will be included in the result: -->
+  <!-- <script>
+    const song = "Fight the Youth";
+    const score = 9;
+    const highestScore = 10;
+    const output = `I like the song ${song}. I gave it a score of ${
+      (score / highestScore) * 100
+    }%.`;
+    console.log(output); // "I like the song Fight the Youth. I gave it a score of 90%."
+  </script> -->
+
+  <!-- Template literals respect the line breaks in the source code, so you can write strings that span multiple lines like this: -->
+  <script>
+    const output = `I like the song.
+    I gave it a score of 90%.`;
+    console.log(output);
+
+    /*
+    I like the song.
+    I gave it a score of 90%.
+    */
+  </script>
+
+
+  <!-- To have the equivalent output using a normal string you'd have to include line break characters (\n) in the string: -->
+  <script>
+    const output = "I like the song.\nI gave it a score of 90%.";
+    console.log(output);
+
+    /*
+    I like the song.
+    I gave it a score of 90%.
+    */
+  </script>
+
+</body>
+</html>
