@@ -44,7 +44,16 @@ Print the returned result into the paragraph (para)'s textContent. -->
     const para = document.createElement('p');
 
     // Add your code here
+    function random(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
 
+    function chooseName(names) {      
+      return names[random(0, names.length)];
+    }
+
+    para.textContent += `${chooseName(names)}. `;
+    
     // Don't edit the code below here!
 
     const section = document.querySelector('section');
