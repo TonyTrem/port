@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+</head>
+<body>
+    <script>
+        choices = ["rock", "paper", "scissors"]
+
+        function random(min, max) {
+            return Math.floor(Math.random() * (max - min)) + min;
+        }
+
+        function getComputerChoice() {
+            return choices[random(0, choices.length)];
+        }
+
+        function playRound(playerSelection, computerSelection) {
+            if (playerSelection.toLowerCase() === computerSelection) {
+                return "Draw!";
+            } else if (playerSelection.toLowerCase() === "rock") {
+                if (computerSelection === "scissors") {
+                    return "You Won!";
+                } else {
+                    return "You Lose!";
+                }
+            } else if (playerSelection.toLowerCase() === "scissors") {
+                if (computerSelection === "paper") {
+                    return "You Won!";
+                } else {
+                    return "You Lose!";
+                }
+            } else if (playerSelection.toLowerCase() === "paper") {
+                if (computerSelection === "rock") {
+                    return "You Won!";
+                } else {
+                    return "You Lose!";
+                }
+            }
+        }
+
+        function game() {
+            let playerScore = 0;
+            let computerScore = 0;
+
+            for (let i = 0; i < 5; i++) {
+                // your code here
+                let computerSelection = getComputerChoice();
+                let playerSelection = prompt("Rock Paper Scissors?");
+                if (playRound(playerSelection, computerSelection) === "You Won!") {
+                    playerScore++;
+                    console.log("You won that round!");
+                } else if (playRound(playerSelection, computerSelection) === "You Lose!") {
+                    computerScore++;
+                    console.log("You lost that round!");
+                }
+            }
+
+            if (playerScore < computerScore) {
+                console.log("You lost the game!!");
+            } else if (playerScore > computerScore){
+                console.log("You won the game!!");
+            } else {
+                console("Draw!!!")
+            }
+            
+        }
+        game();
+
+    </script>
+</body>
+</html>
