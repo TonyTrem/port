@@ -42,16 +42,32 @@
 
     // Add your code here
 
-    // Prompt user for name
+    // Prompt the user for a name to search
+    let name = prompt("Who's number are you looking for?");
 
-    const name = prompt("Who's number are you looking for?");
-
-    for (let i = 0; i < phonebook.length; i++) {        
+    // Loop through the phonebook to find a match
+    let match = false;  // flag to indicate if a match was found
+    while (!match) {
+      for (let i = 0; i < phonebook.length; i++) {        
         if (phonebook[i].name === name) {
-            para.textContent = `The phone number for ${name} is ${phonebook[i].number}`;
+          
+          // If a match is found, create a paragraph element with the name and number
+          const para = document.createElement('p');
+          para.textContent = `The phone number for ${name} is ${phonebook[i].number}`;
+
+          // Append the paragraph to the section element and set the flag to true
+          const section = document.querySelector('section');
+          section.appendChild(para);
+          match = true;
+          break;  // exit the loop since a match was found
         }
-    }       
-    
+      }
+
+      // If no match was found, prompt the user again for a name
+      if (!match) {
+          name = prompt(`No match found for ${name}. Please enter another name:`);
+      }
+      }
 
     // Don't edit the code below here!
     const section = document.querySelector('section');
