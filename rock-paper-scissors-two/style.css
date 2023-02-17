@@ -84,7 +84,7 @@ button {
 }
 
 .selectionbtn:hover {
-    border: 2px solid darkblue;
+    border: 2px solid red;
 }
 
 #result-container {
