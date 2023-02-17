@@ -1,0 +1,65 @@
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-image: linear-gradient(to bottom right, blue, lightblue);
+    width: 100%;
+    align-items: center;
+    row-gap: 60px;
+}
+
+#score-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;    
+}
+
+ul {
+    display: flex;
+    list-style-type: none;
+    width: 100%; 
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    justify-content: space-evenly;
+}
+  
+li {
+    display: flex;
+    color: white;
+    font-size: 46px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+#selection-container {
+    display: flex;
+    gap: 50px;
+}
+
+button {
+    height: 150px;
+    width: 150px;
+    font-size: 100px;
+}
+
+#result-container {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: bolder;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 80px;
+    width: 100%;
+    height: 150px;
+    margin-bottom: 50px;
+}
