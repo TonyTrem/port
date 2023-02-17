@@ -83,6 +83,10 @@ button {
     border: none;
 }
 
+.selectionbtn:hover {
+    border: 2px solid darkblue;
+}
+
 #result-container {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-weight: bolder;
