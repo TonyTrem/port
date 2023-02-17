@@ -87,5 +87,95 @@ function random(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
+const container = document.createElement('div');
+container.id = 'container';
+container.style.display = 'none';
+
+const scoreContainer = document.createElement('div');
+scoreContainer.id = 'score-container';
+
+const playerScore = document.createElement('span');
+playerScore.id = 'player-score';
+playerScore.textContent = '0';
+
+const computerScore = document.createElement('span');
+computerScore.id = 'computer-score';
+computerScore.textContent = '0';
+
+const scoreList = document.createElement('ul');
+const playerListItem = document.createElement('li');
+playerListItem.textContent = 'You "';
+playerListItem.appendChild(playerScore);
+playerListItem.appendChild(document.createTextNode('"'));
+const computerListItem = document.createElement('li');
+computerListItem.textContent = 'THEM! "';
+computerListItem.appendChild(computerScore);
+computerListItem.appendChild(document.createTextNode('"'));
+scoreList.appendChild(playerListItem);
+scoreList.appendChild(computerListItem);
+
+scoreContainer.appendChild(scoreList);
+
+const selectionContainer = document.createElement('div');
+selectionContainer.id = 'selection-container';
+
+const rockBtn = document.createElement('button');
+rockBtn.classList.add('selectionbtn');
+rockBtn.id = 'rock';
+rockBtn.textContent = '🪨';
+
+const paperBtn = document.createElement('button');
+paperBtn.classList.add('selectionbtn');
+paperBtn.id = 'paper';
+paperBtn.textContent = '🧻';
+
+const scissorsBtn = document.createElement('button');
+scissorsBtn.classList.add('selectionbtn');
+scissorsBtn.id = 'scissors';
+scissorsBtn.textContent = '✂️';
+
+selectionContainer.appendChild(rockBtn);
+selectionContainer.appendChild(paperBtn);
+selectionContainer.appendChild(scissorsBtn);
+
+const resultContainer = document.createElement('div');
+resultContainer.id = 'result-container';
+
+container.appendChild(scoreContainer);
+container.appendChild(selectionContainer);
+container.appendChild(resultContainer);
+
+const startContainer = document.createElement('div');
+startContainer.id = 'start-container';
+
+const startTitle = document.createElement('div');
+startTitle.id = 'start-title';
+
+const titleList = document.createElement('ul');
+const rockTitle = document.createElement('li');
+rockTitle.id = 'title-letter';
+rockTitle.textContent = '🪨';
+const paperTitle = document.createElement('li');
+paperTitle.id = 'title-letter';
+paperTitle.textContent = '🧻';
+const scissorsTitle = document.createElement('li');
+scissorsTitle.id = 'title-letter';
+scissorsTitle.textContent = '✂️';
+titleList.appendChild(rockTitle);
+titleList.appendChild(paperTitle);
+titleList.appendChild(scissorsTitle);
+
+startTitle.appendChild(titleList);
+
+const playBtn = document.createElement('button');
+playBtn.id = 'playbtn';
+playBtn.textContent = 'Play Now!';
+
+startContainer.appendChild(startTitle);
+startContainer.appendChild(playBtn);
+
+document.body.appendChild(container);
+document.body.appendChild(startContainer);
+
 const game = new Game();
 game.start();
