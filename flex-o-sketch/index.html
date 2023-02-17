@@ -10,9 +10,12 @@
 <body>
     <div id="options">
         <div class="slider">
-            <input type="range" min="2" max="64" value="16" oninput="rangeValue.innerText = this.value">
+            <input type="range" min="2" max="64" value="10" oninput="rangeValue.innerText = this.value">
             <p id="rangeValue">10</p>
-          </div>
+        </div>
+        <div class="clearbtn">
+            <button>Clear</button>
+        </div>
     </div>
     <div id="main-container">
         <div id="sketch-pad">
@@ -20,21 +23,69 @@
         </div>
     </div>
     <script>
+        // get the elements
         const sketchPad = document.querySelector('#sketch-pad')
-        let width = 16;
-        let height = 16;
 
-        // Create grid
-        for (let x = 0; x < width; x++) {
-            for (let y = 0; y < height; y++){
-                const sketchBox = document.createElement('div');
-                sketchBox.id = `box-${x}-${y}`;
-                sketchBox.className = "sketch-box"
-                sketchBox.style.minHeight = `${(450 / height)}px`;
-                sketchBox.style.minWidth = `${(450 / width)}px`;
-                sketchPad.appendChild(sketchBox);
+        // add event listener to the slider        
+        const slider = document.querySelector('input[type="range"]');
+        slider.addEventListener('input', function() {
+            deleteGrid();
+            createGrid(this.value);
+            draw();
+        })
+
+        // delete the grid
+        function deleteGrid() {
+            while (sketchPad.firstChild) {
+                sketchPad.removeChild(sketchPad.firstChild);
             }
         }
+
+        // draw on the grid when mouse clicked 
+        function draw() {
+            const sketchBoxes = document.querySelectorAll('.sketch-box');
+            sketchBoxes.forEach(sketchBox => {
+                sketchBox.addEventListener('mouseover', function() {
+                    sketchBox.style.backgroundColor = 'black';
+                })
+            })
+        }
+
+        // create grid
+        function createGrid(boxNumber) {
+            for (let x = 0; x < boxNumber; x++) {
+                for (let y = 0; y < boxNumber; y++){
+                    const sketchBox = document.createElement('div');
+                    sketchBox.id = `box-${x}-${y}`;
+                    sketchBox.className = "sketch-box"
+                    sketchBox.style.minHeight = `${(450 / boxNumber)}px`;
+                    sketchBox.style.minWidth = `${(450 / boxNumber)}px`;
+                    sketchPad.appendChild(sketchBox);
+                }
+            }
+        }
+
+        // iterate thru the grind and change the background color to lightslategray
+        function clearGrid() {
+            const sketchBoxes = document.querySelectorAll('.sketch-box');
+            sketchBoxes.forEach(sketchBox => {
+                sketchBox.style.backgroundColor = 'lightslategray';
+            })
+        }
+
+        // add event listener to the clear button
+        const clearBtn = document.querySelector('.clearbtn button');
+        clearBtn.addEventListener('click', function() {
+            clearGrid();
+        })
+
+        
+
+        // call the function
+        createGrid(10);
+        draw();
+
+
     </script>
 </body>
 </html>
