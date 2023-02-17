@@ -8,36 +8,57 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="container">
+    <div id="container" style="display: none;">
         
         <div id="score-container">
             <ul>
-                <li>You! "<span id="player-score">0</span>"</li>
+                <li>You "<span id="player-score">0</span>"</li>
                 <li>THEM! "<span id="computer-score">0</span>"</li>
             </ul>
         </div>
         <div id="selection-container">
-            <button id="rock">🪨</button>
-            <button id="paper">🧻</button>
-            <button id="scissors">✂️</button>
+            <button class="selectionbtn" id="rock">🪨</button>
+            <button class="selectionbtn" id="paper">🧻</button>
+            <button class="selectionbtn" id="scissors">✂️</button>
         </div>
         <div id="result-container">
 
         </div>
 
     </div>
+    <div id="start-container">
+        <div id="start-title">
+            <ul>
+                <li id="title-letter">R</li>
+                <li id="title-letter">P</li>
+                <li id="title-letter">S</li>
+            </ul>            
+        </div>
+        <div>
+            <button id="playbtn">Play Now!</button>
+        </div>
+    </div>
     
 
     <script>
-        const choices = ["rock", "paper", "scissors"];
-        let playerScore = 0;
-        let computerScore = 0;
+        const playButton = document.getElementById('playbtn');
+        const startContainer = document.getElementById('start-container');
+        const gameContainer = document.getElementById('container');
+        const choices = ["rock", "paper", "scissors"];      
 
-        const buttons = document.querySelectorAll('button');
+        const buttons = document.querySelectorAll('.selectionbtn');
         const playerScoreDisplay = document.querySelector('#player-score');
         const computerScoreDisplay = document.querySelector('#computer-score');
         const resultContainer = document.querySelector('#result-container');
-
+        
+        let playerScore = 0;
+        let computerScore = 0;
+        
+        playButton.addEventListener('click', () => {
+            startContainer.style.display = 'none';
+            gameContainer.style.display = 'flex';
+        });        
+        
         buttons.forEach((button) => {
             button.addEventListener('click', () => {
                 const result = playRound(button.id, getComputerChoice());
@@ -45,7 +66,7 @@
                 updateScores(result);
             });
         });
-        
+              
         function showResult(str) {
             // Remove all child elements from the resultContainer
             while (resultContainer.firstChild) {

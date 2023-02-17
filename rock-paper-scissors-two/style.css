@@ -3,16 +3,45 @@ body {
     display: flex;
     justify-content: center;
     height: 100vh;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-#container {
-    display: flex;
+#container,
+#start-container {
     flex-direction: column;
     justify-content: space-between;
     background-image: linear-gradient(to bottom right, blue, lightblue);
     width: 100%;
     align-items: center;
     row-gap: 60px;
+    padding-top: 5%;
+}
+
+#playbtn {
+    height: 150px;
+    width: auto;
+    font-size: 100px;
+    background-color: transparent;
+    border-radius: 25px;
+    border: none;
+    margin-bottom: 100px;
+}
+
+#playbtn:hover {
+    color: darkblue;
+}
+
+#start-container {
+    display: flex;
+}
+
+div.container {
+    display: none;
+}
+
+#title-letter {
+    font-size: 150px;
+    font-weight: bold;
 }
 
 #score-container {
@@ -34,8 +63,7 @@ ul {
 li {
     display: flex;
     color: white;
-    font-size: 46px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 46px;    
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
@@ -50,6 +78,9 @@ button {
     height: 150px;
     width: 150px;
     font-size: 100px;
+    background-color: black;
+    border-radius: 25px;
+    border: none;
 }
 
 #result-container {
