@@ -1,21 +1,82 @@
+/* refactor the below css */
+
+
 body {
     display: flex;
     justify-content: center;
+    background-color: lavender;
+}
+
+#main-container, #options {
+    display: flex;
+    background-color: slateblue;    
+    border-radius: 25px;    
+    border: 2px solid black;
+    box-shadow: 0px 15px 40px #7E6D5766;    
 }
 
 #main-container {
-    display: flex;
-    background-color: slateblue;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
     padding: 70px;
-    border-radius: 25px;
     margin: 50px;
+}
+
+#optionbtns {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+}
+
+#options {
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    margin: 50px;
+}
+
+#primary_color {
+    display: flex;
+    background-color: black;
+    width: 100px;
+    height: 50px;
+    border-radius: 10px;
     border: 2px solid black;
     box-shadow: 0px 15px 40px #7E6D5766;
+}
 
+#secondary_color {
+    display: flex;
+    background-color: white;
+    width: 100px;
+    height: 50px;
+    border-radius: 10px;
+    border: 2px solid black;
+    box-shadow: 0px 15px 40px #7E6D5766;
+}
+
+#primary_color:hover, #secondary_color:hover {
+    background-color: lightslategray;
+    color: black;
+}
+
+#primary_color, #secondary_color {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+}
+
+#primary_color p, #secondary_color p {
+    color: white;
 }
 
 #sketch-pad {
-    background-color: lightslategray;
+    background-color: white;
     width: 450px;
     height: 450px;
     display: flex;
@@ -28,15 +89,7 @@ body {
     padding: 0;
 }
 
-.sketch-box:hover {
-    background-color: black;
-}
-
-.sketch-box:hover:active {
-    background-color: white;
-}
-
-button, input {
+button, input.slider {
     background-color: slateblue;
     color: white;
     border: 2px solid black;
@@ -46,6 +99,14 @@ button, input {
     font-size: 20px;
     font-family: 'Open Sans', sans-serif;
     font-weight: 600;    
+}
+
+/* Center items in #options */
+#options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
 }
 
 button {

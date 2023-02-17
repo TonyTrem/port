@@ -13,8 +13,17 @@
             <input type="range" min="2" max="64" value="10" oninput="rangeValue.innerText = this.value">
             <p id="rangeValue">10</p>
         </div>
-        <div class="clearbtn">
-            <button>Clear</button>
+        <div class="optionbtns">
+            <div class="clearbtn">
+                <button>Clear</button>
+            </div>
+            <div class="colorbtn">
+                <button>Random</button>
+            </div>
+        </div>
+        <div class="colorpicker">
+            <label id="test_wrapper"><input type="color" id="primary_color" class="field-radio" name="primary-color" v-model="scheme.primary" @change="changeColor()"> </label>
+
         </div>
     </div>
     <div id="main-container">
@@ -41,7 +50,7 @@
             }
         }
 
-        // draw on the grid when mouse clicked 
+        // draw on the grid when mouseover 
         function draw() {
             const sketchBoxes = document.querySelectorAll('.sketch-box');
             sketchBoxes.forEach(sketchBox => {
@@ -65,11 +74,11 @@
             }
         }
 
-        // iterate thru the grind and change the background color to lightslategray
+        // iterate thru the grind and change the background color to white
         function clearGrid() {
             const sketchBoxes = document.querySelectorAll('.sketch-box');
             sketchBoxes.forEach(sketchBox => {
-                sketchBox.style.backgroundColor = 'lightslategray';
+                sketchBox.style.backgroundColor = 'white';
             })
         }
 
@@ -79,6 +88,27 @@
             clearGrid();
         })
 
+        // add event listener to the random button
+        const colorBtn = document.querySelector('.colorbtn button');
+        colorBtn.addEventListener('click', function() {
+            const sketchBoxes = document.querySelectorAll('.sketch-box');
+            sketchBoxes.forEach(sketchBox => {
+                sketchBox.addEventListener('mouseover', function() {
+                    sketchBox.style.backgroundColor = `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`;
+                })
+            })
+        })
+
+        // add event listener to the color picker and change the background color of the grid
+        const colorPicker = document.querySelector('#primary_color');
+        colorPicker.addEventListener('change', function() {
+            const sketchBoxes = document.querySelectorAll('.sketch-box');
+            sketchBoxes.forEach(sketchBox => {
+                sketchBox.addEventListener('mouseover', function() {
+                    sketchBox.style.backgroundColor = colorPicker.value;
+                })
+            })
+        })
         
 
         // call the function
