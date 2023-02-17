@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/style.css">
+    <title>Flex-o-Sketch</title>
+</head>
+<body>
+    <div id="main-container">
+        <div id="sketch-pad">
+
+        </div>
+    </div>
+    <script>
+        const sketchPad = document.querySelector('#sketch-pad')
+        let width = 16;
+        let height = 16;
+        for (let x = 0; x < width; x++) {
+            for (let y = 0; y < height; y++){
+                const sketchBox = document.createElement('div');
+                sketchBox.id = `box-${x}-${y}`;
+                sketchBox.className = "sketch-box"
+                sketchBox.style.minHeight = `${(450 / height)}px`;
+                sketchBox.style.minWidth = `${(450 / width)}px`;
+                sketchPad.appendChild(sketchBox);
+            }
+        }
+    </script>
+</body>
+</html>

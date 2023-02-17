@@ -1,0 +1,30 @@
+body {
+    display: flex;
+    justify-content: center;
+    min-height: 1vh;
+}
+
+#main-container {
+    display: flex;
+    background-color: grey;
+
+}
+
+#sketch-pad {
+    background-color: lightslategray;
+    width: 450px;
+    height: 450px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.sketch-box {
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.sketch-box:hover {
+    background-color: black;
+}
+
