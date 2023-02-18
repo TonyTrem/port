@@ -1,0 +1,113 @@
+body {
+    background-color: #F8FFDB;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 600;
+    color: #FF7D7D;
+    display: flex;
+    flex-direction: column;
+    
+    min-height: 100vh;
+    justify-content: space-between;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    background-color: #B3FFAE;
+    font-family: 'Orbitron', sans-serif;
+    border: none;
+    border-radius: 10px;
+    border: #FF7D7D 2px solid;
+    padding: 20px;
+    margin: 5px;
+    font-size: 20px;
+    color: #FF7D7D;
+    box-shadow: 0px 15px 40px #7E6D5766;
+    transition: transform 0.2s;
+}
+
+button[data-number] {
+    width: 100px;
+    height: 100px;    
+}
+
+button[data-operation] {
+    width: 100px;
+    height: 100px;
+    background-color: #b89090;
+    color: #F8FFDB;
+}
+
+button[data-operation]:hover {
+    background-color: #FF7D7D;
+    color: #F8FFDB;
+}
+
+button[data-equals] {
+    width: 215px;
+    height: 100px;
+    background-color: #FF7D7D;
+    color: #F8FFDB;
+}
+
+button[data-all-clear] {
+    width: 157px;
+    height: 100px;
+    background-color: #FF7D7D;
+    color: #F8FFDB;
+}
+
+button[data-delete] {
+    width: 157px;
+    height: 100px;
+    background-color: darkgray;
+    color: #F8FFDB;
+}
+
+button[data-equals]:hover,
+button[data-all-clear]:hover,
+button[data-delete]:hover  {
+    background-color: #b89090;
+    color: #F8FFDB;
+}
+
+button:hover {
+    transform: scale(1.1);
+    background-color: #F8FFDB;
+}
+
+button:active {
+    transform: scale(1.2);
+    background-color: #F8FFDB;
+}
+
+div.output {
+    width: 400px;
+    height: 100px;
+    background-color: #FF7D7D;
+    border-radius: 25px;
+    border: 2px solid black;
+    box-shadow: 0px 15px 40px #7E6D5766;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 20px;
+    padding: 20px;
+    font-size: 20px;
+    color: #F8FFDB; 
+}
+
+
