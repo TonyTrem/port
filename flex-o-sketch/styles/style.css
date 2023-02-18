@@ -1,6 +1,3 @@
-/* refactor the below css */
-
-
 body {
     display: flex;
     justify-content: center;
@@ -101,7 +98,6 @@ button, input.slider {
     font-weight: 600;    
 }
 
-/* Center items in #options */
 #options {
     display: flex;
     flex-direction: column;
