@@ -20,6 +20,12 @@
             <div class="colorbtn">
                 <button>Random</button>
             </div>
+            <div class="eraserbtn">
+                <button>Erase</button>
+            </div>
+            <div class="rainbowbtn">
+                <button>Rainbow</button>
+            </div>
         </div>
         <div class="colorpicker">
             <label id="test_wrapper"><input type="color" id="primary_color" class="field-radio" name="primary-color" v-model="scheme.primary" @change="changeColor()"> </label>
@@ -109,12 +115,32 @@
                 })
             })
         })
-        
+
+        // add event listener to the eraser button
+        const eraserBtn = document.querySelector('.eraserbtn button');
+        eraserBtn.addEventListener('click', function() {
+            const sketchBoxes = document.querySelectorAll('.sketch-box');
+            sketchBoxes.forEach(sketchBox => {
+                sketchBox.addEventListener('mouseover', function() {
+                    sketchBox.style.backgroundColor = 'white';
+                })
+            })
+        })
+
+        // add event listener to the rainbow button
+        const rainbowBtn = document.querySelector('.rainbowbtn button');
+        rainbowBtn.addEventListener('click', function() {
+            const sketchBoxes = document.querySelectorAll('.sketch-box');
+            sketchBoxes.forEach(sketchBox => {
+                sketchBox.addEventListener('mouseover', function() {
+                    sketchBox.style.backgroundColor = `hsl(${Math.floor(Math.random() * 360)}, 100%, 50%)`;
+                })
+            })
+        })       
 
         // call the function
         createGrid(10);
         draw();
-
 
     </script>
 </body>
