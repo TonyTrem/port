@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emmet</title>
+</head>
+<body>
+
+    <!-- form:post>(.group>label+input:text)+(.group>label+input:number) -->
+    <form action="" method="post">
+        <div class="group"><label for=""></label><input type="text" name="" id=""></div>
+        <div class="group"><label for=""></label><input type="number" name="" id=""></div>
+    </form>
+
+    <!-- form:post>.group>input:text -->
+    <form action="" method="post">
+        <div class="group"><input type="text" name="" id=""></div>
+    </form>
+
+    <!-- (header>h2{Heading}+nav>ol>li*5>a{Link $})+main+footer -->
+    <header>
+        <h2>Heading</h2>
+        <nav>
+            <ol>
+                <li><a href="">Link 1</a></li>
+                <li><a href="">Link 2</a></li>
+                <li><a href="">Link 3</a></li>
+                <li><a href="">Link 4</a></li>
+                <li><a href="">Link 5</a></li>
+            </ol>
+        </nav>
+    </header>
+    <main></main>
+    <footer></footer>
+
+    <!-- (header>nav)+main+footer -->
+    <header>
+        <nav></nav>
+    </header>
+    <main></main>
+    <footer></footer>
+
+    <!-- header>nav^main+footer -->
+    <header>
+        <nav></nav>
+    </header>
+    <main></main>
+    <footer></footer>
+
+
+    <!-- header+main+footer -->
+    <header></header>
+    <main></main>
+    <footer></footer>
+
+
+    <!-- header>nav>ul>li*3.class-${List Item $} -->
+    <header>
+        <nav>
+            <ul>
+                <li class="class-1">List Item 1</li>
+                <li class="class-2">List Item 2</li>
+                <li class="class-3">List Item 3</li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <!-- header>nav>ul>li*10.class-${List Item $$} -->
+    <header>
+        <nav>
+            <ul>
+                <li class="class-1">List Item 01</li>
+                <li class="class-2">List Item 02</li>
+                <li class="class-3">List Item 03</li>
+                <li class="class-4">List Item 04</li>
+                <li class="class-5">List Item 05</li>
+                <li class="class-6">List Item 06</li>
+                <li class="class-7">List Item 07</li>
+                <li class="class-8">List Item 08</li>
+                <li class="class-9">List Item 09</li>
+                <li class="class-10">List Item 10</li>
+            </ul>
+        </nav>
+    </header>
+
+</body>
+</html>
