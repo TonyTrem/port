@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Grid</title>
+    <style>
+        .container {
+            display: grid;
+            grid-template-columns: 50px 50px;
+            grid-template-rows: 50px 50px;
+            /* grid-template: 50px 50px / 50px 50px; */
+            /* column-gap: 10px;
+            row-gap: 100px; */
+            gap: 100px 10px;
+        }
+
+        .container > div {
+            border: 1px solid blue;
+        }
+    </style>
+</head>
+    <body>
+<!--     <p> grid-template-columns and grid-template-rows are two CSS properties used in grid layouts to define the size, position, and number of columns and rows in the grid.</p>
+    <p> grid-template-columns is used to define the columns in the grid. It takes a space-separated list of values that represent the size of each column. For example, if you set grid-template-columns: 100px 50px 200px;, it means that the grid has three columns: the first column is 100 pixels wide, the second column is 50 pixels wide, and the third column is 200 pixels wide.</p>
+    <p> grid-template-rows is used to define the rows in the grid. It takes a space-separated list of values that represent the size of each row. For example, if you set grid-template-rows: 50px 100px 75px;, it means that the grid has three rows: the first row is 50 pixels high, the second row is 100 pixels high, and the third row is 75 pixels high.</p>
+    <p> Both grid-template-columns and grid-template-rows can also accept other types of values, such as percentages or fractions. They can also use the repeat() function to create a repeated pattern of columns or rows with a certain size.</p>
+    <p> Overall, grid-template-columns and grid-template-rows are very useful properties for creating complex grid layouts that can adapt to different screen sizes and content.</p> -->
+<!-- 
+    <p> grid-template is a shorthand property for defining grid columns, rows, and areas. It is a convenient way to create a grid layout with just one declaration. It takes a space-separated list of values that represent the size of each column and row in the grid. For example, if you set grid-template: 50px 50px / 250px 50px 50px;, it means that the grid has two rows that are 50 pixels high each, and three columns that are 250 pixels, 50 pixels, and 50 pixels wide, respectively.</p>
+    <p> grid-template can also accept other types of values, such as percentages or fractions. It can also use the repeat() function to create a repeated pattern of columns or rows with a certain size.</p>
+    <p> Overall, grid-template is a very useful property for creating complex grid layouts that can adapt to different screen sizes and content.</p> -->
+
+
+    <div class="container">
+        <div>Item 1</div>
+        <div>Item 2</div>
+        <div>Item 3</div>
+        <div>Item 4</div>
+    </div>
+
+    <!-- <div class="container">
+        <div>Item 1</div>
+        <div>Item 2
+          <p>I am not a grid item!</p>
+        </div>
+        <div>Item 3</div>
+        <div>Item 4</div>
+      </div> -->
+</body>
+</html>
