@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box Positioning</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="item item1">Item 1</div>
+        <div class="item item2">Item 2</div>
+        <div class="item item3">Item 3</div>
+        <div class="item item4">Item 4</div>        
+    </div>
+    <hr>
+    <div class="wrapper">
+        <div class="item item5">Item 5</div>
+        <div class="item item6">Item 6</div>
+        <div class="item item7">Item 7</div>
+        <div class="item item8">Item 8</div>
+    </div>
+    <hr>
+    <div class="wrapper2">
+        <div class="item item9">Item 9</div>
+    </div>
+    <hr>
+    <div class="wrapper3">
+        <div class="item item10">Item 10</div>
+        <div class="item item11">Item 11</div>
+        <div class="item item12">Item 12</div>
+        <div class="item item13">Item 13</div>
+    </div>
+    <style>
+        body {
+            margin: 0;
+            padding: 10px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 300;
+        }
+
+        .wrapper {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 10px;
+            grid-auto-rows: 100px;
+            grid-template-areas: 
+                "a a a a b b b b"
+                "a a a a b b b b"
+                "c c c c d d d d"
+                "c c c c d d d d";
+        }
+
+        .wrapper2 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            grid-auto-rows: 200px;
+            grid-template-areas: 
+                ". a a ."
+                ". a a .";
+        }
+
+        .wrapper3 {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: repeat(3, 100px);
+            height: 500px;
+            width: 500px;
+            gap: 10px;
+            grid-template-areas:
+                "a a b"
+                "a a b"
+                "c d d";
+        }
+
+        .item1 {
+            grid-area: a;
+        }
+
+        .item2 {
+            grid-area: b;
+            align-self: start;
+        }
+
+        .item3 {
+            grid-area: c;
+            align-self: end;
+        }
+
+        .item4 {
+            grid-area: d;
+            align-self: center;
+        }
+
+        .item5 {
+            grid-area: a;
+        }
+
+        .item6 {
+            grid-area: b;
+            justify-self: start;
+        }
+
+        .item7 {
+            grid-area: c;
+            justify-self: end;
+        }
+
+        .item8 {
+            grid-area: d;
+            justify-self: center;
+        }
+
+        .item9 {
+            grid-area: a;
+            justify-self: center;
+            align-self: center;
+        }
+
+        .item10 {
+            grid-area: a;
+        }
+
+        .item11 {
+            grid-area: b;
+        }
+
+        .item12 {
+            grid-area: c;
+        }
+
+        .item13 {
+            grid-area: d;
+        }
+
+        .item {
+            background-color: #c4d3f3;
+            border: 2px solid #5774f5;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+    </style>
+</body>
+</html>
