@@ -1,0 +1,159 @@
+* {
+    box-sizing: border-box;
+}
+    
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f1f1f1;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 3fr 3fr 1fr;
+    grid-template-areas: 
+        "nav header header header"
+        "nav projects projects announcements"
+        "nav projects projects trending";
+}
+
+.nav {
+    grid-area: nav;
+    background-color: #95BDFF;
+    padding: 10px;
+    font-weight: 900;
+    
+
+}
+
+.navimage > img {
+    width: 25px;
+    height: 25px;
+}
+
+.logo {
+    font-size: larger;
+}
+
+.header {
+    grid-area: header;
+    background-color: #DFFFD8;
+    padding: 10px;
+    
+}
+
+.headercontainer {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: auto auto;
+}
+
+.headernotifications > ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;   
+}
+
+li {
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    align-items: center;
+}
+
+
+
+.headerbuttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    margin-top: 10px;
+}
+
+.headerbutton {
+    background-color: #95BDFF;
+    border: none;
+    color: azure;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.projects {
+    grid-area: projects;
+    background-color: #B4E4FF;
+    padding: 10px;
+}
+
+.projectcardcontainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-gap: 5px;
+}
+
+.projectcard {
+    background-color: #DFFFD8;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.projectcardtitle {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.projectcarddescription {
+    font-size: 15px;
+}
+
+.projectcardbuttons {
+}
+
+.projectcardbutton {
+    margin-top: 30px;
+}   
+
+.announcements {
+    grid-area: announcements;
+    background-color: #B4E4FF;
+}
+
+.announcementcardcontainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-gap: 5px;
+    margin-right: 20px;
+}
+
+.announcementlogo {
+    padding: 10px;
+}
+
+.announcementcard {
+    background-color: #DFFFD8;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.announcementcardtitle {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.announcementcarddescription {
+    font-size: 9px;
+}
+
+.trending {
+    grid-area: trending;
+    background-color: #B4E4FF;
+}
