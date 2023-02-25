@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <!-- link to js file -->
+    <!-- <script src="scripts/library.js"></script> -->
+
+</head>
+<body>
+    <div class="header">
+        <h1>Library</h1>
+        <button class="addbookbtn"onclick="addBookToLibrary()">Add Book</button>
+    </div>
+    
+    <div class="library">
+
+    </div>
+    
+    <script>
+        let myLibrary = [];
+
+        function Book(title, author, pages, read) {
+            this.title = title;
+            this.author = author;
+            this.pages = pages;
+            this.read = read; 
+        }
+
+        function addBookToLibrary() {
+            let title = prompt('Enter the title of the book');
+            let author = prompt('Enter the author of the book');
+            let pages = prompt('Enter the number of pages');
+            let read = prompt('Have you read the book?');
+            let newBook = new Book(title, author, pages, read);
+            myLibrary.push(newBook);
+            displayBooks();
+        }
+
+        function displayBooks() {
+            let library = document.querySelector('.library');
+            library.innerHTML = '';
+
+            if (myLibrary.length === 0) {
+                let library = document.querySelector('.library');
+                let message = document.createElement('p');
+                message.classList.add('message');
+                message.textContent = 'Your library is empty. Add a book to get started.';
+                library.appendChild(message);
+            } else {
+                let library = document.querySelector('.library');
+                for (let i = 0; i < myLibrary.length; i++) {
+                    let book = document.createElement('div');
+                    book.classList.add('book');
+                    book.innerHTML = `
+                        <h3>${myLibrary[i].title}</h3>
+                        <p>Author: ${myLibrary[i].author}</p>
+                        <p>Pages: ${myLibrary[i].pages}</p>
+                        <p>Read: ${myLibrary[i].read}</p>
+                        <button class="removebookbtn" onclick="removeBook()">Remove Book</button>
+                    `;
+                    library.appendChild(book);
+                }   
+            }
+        }
+
+        function removeBook() {
+            let book = event.target.parentElement;
+            let title = book.querySelector('h3').textContent;
+            for (let i = 0; i < myLibrary.length; i++) {
+                if (myLibrary[i].title === title) {
+                    myLibrary.splice(i, 1);
+                }
+            }
+            displayBooks();
+        }
+                
+        displayBooks();
+        
+
+        
+    </script>
+</body>
+</html>
