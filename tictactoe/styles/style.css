@@ -1,0 +1,28 @@
+body {
+    font-family: 'Finger Paint', cursive;
+    text-align: center;
+}
+
+#gameboard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 10px;
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+    background-size: 100% 100%;
+    background-image: url(../images/board.jpg);
+    border-radius: 10px;
+    padding: 10px;
+    align-items: center;
+    border: 2px solid black;
+    box-shadow: 0 0 10px black;
+}
+
+.card {
+    font-size: 50px;
+    font-weight: 900;
+    opacity: .75;
+    cursor: pointer;
+}
