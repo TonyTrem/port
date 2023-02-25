@@ -11,6 +11,7 @@ const winConditions = [
 let gameBoard = ["-", "-", "-", "-", "-", "-", "-", "-", "-"];
 
 function createGameBoard() {
+    document.getElementById("playagain").style.display = "none";
     for (let i = 0; i < gameBoard.length; i++) {
         let card = document.createElement("div");
         card.classList.add("card");
@@ -25,10 +26,12 @@ function addEventListeners() {
     let cards = document.getElementsByClassName("card");
     for (let i = 0; i < cards.length; i++) {
         cards[i].addEventListener("click", function() {
-            if (this.innerHTML === "-" && this.innerHTML !== "O") {
-                playerMove(this);                
+            if (document.getElementById("notifications").innerHTML === "") {
+                if (this.innerHTML === "-") {
+                    playerMove(this);
+                }
             }
-        });
+       });
     }
 }
 
@@ -36,7 +39,13 @@ function playerMove(card) {
     let id = card.getAttribute("id");
     gameBoard[id] = "X";
     card.innerHTML = "X";
-    checkWin(); 
+    checkWin();
+
+    console.log("notifications: " + document.getElementById("notifications").innerHTML);
+    if (document.getElementById("notifications").innerHTML === "") {
+        console.log("calling computerMove()");
+        computerMove();
+    }
 }
 
 function computerMove() {
@@ -45,6 +54,7 @@ function computerMove() {
         let a = gameBoard[winCondition[0]];
         let b = gameBoard[winCondition[1]];
         let c = gameBoard[winCondition[2]];
+
         if (a === "X" && b === "X" && c === "-") {
             gameBoard[winCondition[2]] = "O";
             document.getElementById(winCondition[2]).innerHTML = "O";
@@ -85,7 +95,8 @@ function checkWin() {
         }
         if (a === b && b === c) {
             let notifications = document.getElementById("notifications");
-            notifications.innerHTML = a + " wins!";                
+            notifications.innerHTML = a + " wins!";
+            document.getElementById("playagain").style.display = "block";
             return;
         }
     }
@@ -102,6 +113,7 @@ function checkDraw() {
     if (draw) {
         let notifications = document.getElementById("notifications");
         notifications.innerHTML = "Draw!";
+        document.getElementById("playagain").style.display = "block";
     }
 }
 
@@ -111,6 +123,19 @@ function coinToss() {
         return "player";
     } else {
         return "computer";
+    }
+}
+
+function playAgain() {
+    for (let i = 0; i < gameBoard.length; i++) {
+        gameBoard[i] = "-";
+        document.getElementById(i).innerHTML = "-";
+    }
+    document.getElementById("notifications").innerHTML = "";
+    document.getElementById("playagain").style.display = "none"; 
+    let firstMove = coinToss();
+    if (firstMove === "computer") {
+        computerMove();
     }
 }
 
