@@ -41,11 +41,12 @@ function playerMove(card) {
     card.innerHTML = "X";
     checkWin();
     if (document.getElementById("notifications").innerHTML === "") {
-        computerMove();
+        setTimeout(computerMove, 500);
     }
 }
 
 function computerMove() {
+
     let bestScore = -Infinity;
     let move;
   
