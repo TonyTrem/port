@@ -4,123 +4,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Library</title>
+    <title>My Little Library</title>
     <link rel="stylesheet" href="styles/style.css">
-    <!-- link to js file -->
-    <!-- <script src="scripts/library.js"></script> -->
 
-</head>
-<body>
-    <div class="headercontainer">
-        <div class="header">
-            <h1>Library</h1>
-        </div>
-    </div>
-    
-    <div class="navbarcontainer">
-        <div class="navbar">
-            <h2>Add Book</h2>
-            <form action="index.html" method="post">
-                <div class="form-group">
-                    <input type="text" name="title" id="title" placeholder="Title">
-                </div>
-                <div class="form-group">
-                    <input type="text" name="author" id="author" placeholder="Author">
-                </div>
-                <div class="form-group">
-                    <input type="text" name="pages" id="pages" placeholder="Pages">
-                </div>
-                <div class="form-group">
-                    <label for="read">Read</label>
-                    <input type="checkbox" name="read" id="read">
-                </div>
-                <a href="#">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <div class="add-book">
-                        Add Book
-                    </div>
-                    
-                </a>
-            </form>
+  </head>
+  
+  <body>
+    <h1>My Little Library</h1>
+    <form>
+      <label for="title">Title:</label>
+      <input type="text" id="title" name="title" required>
+  
+      <label for="author">Author:</label>
+      <input type="text" id="author" name="author" required>
+  
+      <label for="pages">Number of Pages:</label>
+      <input type="number" id="pages" name="pages" min="1" required>
+  
+      <label for="read">Have you read this book?</label>
+      <input type="checkbox" id="read" name="read">
+  
+      <button type="button" onclick="addBook()">Add Book</button>
+    </form>
+  
+    <button type="button" onclick="sortBooks()">Sort by Title</button>
+    <button type="button" onclick="deleteAllBooks()">Delete All</button>
+  
+    <ul id="bookList"></ul>
 
-        </div>
-        
-    </div>
-    <div class="librarycontainer">
-        <div class="library"></div>
-    </div>
-    
-        
-
-    </div>
-    
-    <script>
-        let myLibrary = [];
-
-        function Book(title, author, pages, read) {
-            this.title = title;
-            this.author = author;
-            this.pages = pages;
-            this.read = read; 
-        }
-
-        function addBookToLibrary(event) {
-            event.preventDefault();
-            let title = document.querySelector('input[name="title"]').value;
-            let author = document.querySelector('input[name="author"]').value;
-            let pages = document.querySelector('input[name="pages"]').value;
-            let read = document.querySelector('input[name="read"]').value;
-            let newBook = new Book(title, author, pages, read);
-            myLibrary.push(newBook);
-            displayBooks();
-        }
-
-        function displayBooks() {
-            let library = document.querySelector('.library');
-            library.innerHTML = '';
-
-            if (myLibrary.length === 0) {
-                let library = document.querySelector('.library');
-                let message = document.createElement('p');
-                message.classList.add('message');
-                message.textContent = 'Your library is empty. Add a book to get started.';
-                library.appendChild(message);
-            } else {
-                let library = document.querySelector('.library');
-                for (let i = 0; i < myLibrary.length; i++) {
-                    let book = document.createElement('div');
-                    book.classList.add('book');
-                    book.innerHTML = `
-                        <h3>${myLibrary[i].title}</h3>
-                        <p>Author: ${myLibrary[i].author}</p>
-                        <p>Pages: ${myLibrary[i].pages}</p>
-                        <p>Read: ${myLibrary[i].read}</p>
-                        <button class="removebookbtn" onclick="removeBook()">Remove Book</button>
-                    `;
-                    library.appendChild(book);
-                }   
-            }
-        }
-
-        function removeBook() {
-            let book = event.target.parentElement;
-            let title = book.querySelector('h3').textContent;
-            for (let i = 0; i < myLibrary.length; i++) {
-                if (myLibrary[i].title === title) {
-                    myLibrary.splice(i, 1);
-                }
-            }
-            displayBooks();
-        }
-
-        document.querySelector('.add-book').addEventListener('click', addBookToLibrary);                
-        displayBooks();
-        
-
-        
-    </script>
-</body>
+    <script src="scripts/library.js"></script>
+  </body>
 </html>
