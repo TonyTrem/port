@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'MyFont';
+    src: url('./Callient.otf') format('opentype'),
+            url('./HanstocScript.otf') format('opentype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+.hello {
+    color: red;
+    font-family: 'MyFont';
+    background: url('./icon.png');
+}
