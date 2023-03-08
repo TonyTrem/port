@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation Controller</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: relative;
+            animation: move 2s infinite;
+        }
+
+        @keyframes move {
+            0% {
+                left: 0;
+            }
+            50% {
+                left: 200px;
+            }
+            100% {
+                left: 0;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <h1>Animation Tester</h1>
+        </div>
+    </div>
+    <div class="main">
+        <div class="box">
+
+        </div>
+        <div class="controls">
+            <label for="duration">Duration:</label>
+            <input type="range" id="duration" min="0" max="10" step="0.1" value="1">
+
+            <label for="delay">Delay:</label>
+            <input type="range" id="delay" min="0" max="10" step="0.1" value="0">
+
+            <label for="iteration-count">Iteration Count:</label>
+            <input type="range" id="iteration-count" min="1" max="10" step="1" value="1">
+        </div>
+    </div>
+    <script>
+        const box = document.querySelector('.box');
+        const duration = document.querySelector('#duration');
+        const delay = document.querySelector('#delay');
+        const iterationCount = document.querySelector('#iteration-count');
+
+        duration.addEventListener('input', () => {
+            box.style.animationDuration = `${duration.value}s`;
+        });
+
+        delay.addEventListener('input', () => {
+            box.style.animationDelay = `${delay.value}s`;
+        });
+
+        iterationCount.addEventListener('input', () => {
+            box.style.animationIterationCount = iterationCount.value;
+        });
+    </script>
+</body>
+</html>
