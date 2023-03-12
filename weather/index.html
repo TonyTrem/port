@@ -7,6 +7,112 @@
     <title>Weather App</title>
 </head>
 <body>
-    
+    <navbar>
+        <h1>Weather App</h1>
+        <div class="search">
+            <input type="text" placeholder="Search for a city">
+            <button>Search</button>
+        </div>
+    </navbar>
+    <section>
+
+    </section>
+    <script>
+        // button event listener
+        // fetch data from api
+        // display data on page
+
+        const button = document.querySelector('button')
+        const section = document.querySelector('section')
+        const input = document.querySelector('input')
+
+        button.addEventListener('click', function() {
+            const city = input.value
+            fetch('https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=bd5b4d3508b2fa7277bda30220e9441a', {mode: 'cors'})
+                .then(function(response) {
+                    return response.json()
+                })
+                .then(function(response) {
+                    console.log(response)
+                    const weather = response.weather[0].main
+                    const temp = response.main.temp
+                    const city = response.name
+                    const country = response.sys.country
+                    const icon = response.weather[0].icon
+                    const description = response.weather[0].description
+                    const humidity = response.main.humidity
+                    const wind = response.wind.speed
+                    const sunrise = response.sys.sunrise
+                    const sunset = response.sys.sunset
+                    const date = new Date()
+                    const time = date.getTime()
+                    const sunriseDate = new Date(sunrise * 1000)
+                    const sunsetDate = new Date(sunset * 1000)
+                    const sunriseTime = sunriseDate.toLocaleTimeString()
+                    const sunsetTime = sunsetDate.toLocaleTimeString()
+                    const weatherIcon = 'https://openweathermap.org/img/w/' + icon + '.png'
+                    const weatherDescription = description.charAt(0).toUpperCase() + description.slice(1)
+                    const weatherTemp = Math.round(temp - 273.15)
+                    const weatherHumidity = humidity + '%'
+                    const weatherWind = wind + 'm/s'
+                    const weatherCity = city + ', ' + country
+                    const weatherTime = date.toLocaleTimeString()
+                    const weatherDate = date.toLocaleDateString()
+                    const weatherDiv = document.createElement('div')
+                    const weatherIconDiv = document.createElement('div')
+                    const weatherIconImg = document.createElement('img')
+                    const weatherDescriptionDiv = document.createElement('div')
+                    const weatherTempDiv = document.createElement('div')
+                    const weatherHumidityDiv = document.createElement('div')
+                    const weatherWindDiv = document.createElement('div')
+                    const weatherCityDiv = document.createElement('div')
+                    const weatherTimeDiv = document.createElement('div')
+                    const weatherDateDiv = document.createElement('div')
+                    const weatherSunriseDiv = document.createElement('div')
+                    const weatherSunsetDiv = document.createElement('div')
+                    weatherDiv.classList.add('weather')
+                    weatherIconDiv.classList.add('weather')
+                    weatherIconImg.classList.add('weather')
+                    weatherDescriptionDiv.classList.add('weather')
+                    weatherTempDiv.classList.add('weather')
+                    weatherHumidityDiv.classList.add('weather')
+                    weatherWindDiv.classList.add('weather')
+                    weatherCityDiv.classList.add('weather')
+                    weatherTimeDiv.classList.add('weather')
+                    weatherDateDiv.classList.add('weather')
+                    weatherSunriseDiv.classList.add('weather')
+                    weatherSunsetDiv.classList.add('weather')
+                    weatherIconImg.src = weatherIcon
+                    weatherIconDiv.appendChild(weatherIconImg)
+                    weatherDescriptionDiv.textContent = weatherDescription
+                    weatherTempDiv.textContent = weatherTemp + '°C'
+                    weatherHumidityDiv.textContent = weatherHumidity
+                    weatherWindDiv.textContent = weatherWind
+                    weatherCityDiv.textContent = weatherCity
+                    weatherTimeDiv.textContent = weatherTime
+                    weatherDateDiv.textContent = weatherDate
+                    weatherSunriseDiv.textContent = 'Sunrise: ' + sunriseTime
+                    weatherSunsetDiv.textContent = 'Sunset: ' + sunsetTime
+                    weatherDiv.appendChild(weatherIconDiv)
+                    weatherDiv.appendChild(weatherDescriptionDiv)
+                    weatherDiv.appendChild(weatherTempDiv)
+                    weatherDiv.appendChild(weatherHumidityDiv)
+                    weatherDiv.appendChild(weatherWindDiv)
+                    weatherDiv.appendChild(weatherCityDiv)
+                    weatherDiv.appendChild(weatherTimeDiv)
+                    weatherDiv.appendChild(weatherDateDiv)
+                    weatherDiv.appendChild(weatherSunriseDiv)
+                    weatherDiv.appendChild(weatherSunsetDiv)
+                    section.appendChild(weatherDiv)
+                })
+        })
+
+
+        
+
+
+    </script>
 </body>
 </html>
+
+<!-- ('https://api.openweathermap.org/data/2.5/weather?q=Taupo&appid=bd5b4d3508b2fa7277bda30220e9441a'), {mode: 'cors'} -->
