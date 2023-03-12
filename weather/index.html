@@ -28,7 +28,7 @@
 
         button.addEventListener('click', function() {
             const city = input.value
-            fetch('https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid={hidden}', {mode: 'cors'})
+            fetch('https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=bd5b4d3508b2fa7277bda30220e9441a', {mode: 'cors'})
                 .then(function(response) {
                     return response.json()
                 })
@@ -108,9 +108,11 @@
         })
 
 
-
+        
 
 
     </script>
 </body>
 </html>
+
+<!-- ('https://api.openweathermap.org/data/2.5/weather?q=Taupo&appid=bd5b4d3508b2fa7277bda30220e9441a'), {mode: 'cors'} -->
