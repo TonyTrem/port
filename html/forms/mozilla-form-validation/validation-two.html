@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation Two</title>
+</head>
+<body>
+    <form action="validation-two.php" method="post">
+        <p>
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" required pattern="[a-z]\.[a-z0-9]{3,}">
+        </p>
+        <p>
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" required pattern="[a-zA-Z0-9]+@bigcorp.eu">
+        </p>
+        <p>
+            <label for="phone">Phone</label>
+            <input type="tel" name="phone" id="phone" required pattern="(\d{3}[-\s\.]?)?\d{3}[-\s\.]?\d{4}">
+        </p>
+        <p>
+            <label for="comment">Comment</label>
+            <textarea name="comment" id="comment" cols="30" rows="10" required maxlength="200"></textarea>
+        </p>
+        <p>
+            <input type="submit" value="Submit">
+        </p>
+</body>
+</html>

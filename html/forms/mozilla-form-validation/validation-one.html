@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation One</title>
+</head>
+<body>
+    <form action="validation-one.php" method="post">
+        <p>
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" required minlength="5" maxlength="20">
+        </p>
+        <p>
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" required>
+        </p>
+        <p>
+            <label for="phone">Phone</label>
+            <input type="tel" name="phone" id="phone" required maxlength="15">
+        </p>
+        <p>
+            <label for="comment">Comment</label>
+            <textarea name="comment" id="comment" cols="30" rows="10" required maxlength="200"></textarea>
+        </p>
+        <p>
+            <input type="submit" value="Submit">
+        </p>
+</body>
+</html>

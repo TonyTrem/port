@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation Three</title>
+</head>
+<body>
+    <form action="validation-three.php" method="post">
+        <p>
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" required minlength="10">
+        </p>
+        <p>
+            <input type="submit" value="Submit">
+        </p>
+    </form>
+    <script>
+        const email = document.getElementById('email');
+        email.addEventListener('input', function() {
+            if (email.validity.typeMismatch) {
+                email.setCustomValidity('Please enter an email address.');
+            } else if (email.validity.tooShort) {
+                email.setCustomValidity('Email address must be at least 10 characters long.');
+            } else {
+                email.setCustomValidity('');
+            }
+        });
+    </script>
+</body>
+</html>
