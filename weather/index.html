@@ -8,16 +8,116 @@
 </head>
 <body>
     <navbar>
-        <h1>Weather App</h1>
-        <div class="search">
-            <input type="text" placeholder="Search for a city">
-            <button>Search</button>
-        </div>
+        <ul class="nav">
+            <li><h1>Weather App</h1></li>
+            <li>
+                <div class="search">
+                    <input type="text" placeholder="Search for a city">
+                    <button>Search</button>
+                </div>
+            </li>
+        </ul>       
     </navbar>
     <section>
 
     </section>
+
     <script>
+        // Define constants for DOM elements
+        const button = document.querySelector('button');
+        const section = document.querySelector('section');
+        const input = document.querySelector('input');
+      
+        // Add event listener to the button
+        button.addEventListener('click', function() {
+          // Get the city name from the input
+          const city = input.value;
+      
+          // Fetch weather data from OpenWeatherMap API
+          fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=bd5b4d3508b2fa7277bda30220e9441a`, {mode: 'cors'})
+            .then(response => response.json())
+            .then(data => {
+              // Extract relevant weather information from the response
+              const weather = data.weather[0].main;
+              const temp = Math.round(data.main.temp - 273.15);
+              const icon = `https://openweathermap.org/img/w/${data.weather[0].icon}.png`;
+              const description = data.weather[0].description.charAt(0).toUpperCase() + data.weather[0].description.slice(1);
+              const humidity = `${data.main.humidity}%`;
+              const wind = `${data.wind.speed}m/s`;
+              const city = `${data.name}, ${data.sys.country}`;
+              const sunriseTime = new Date(data.sys.sunrise * 1000).toLocaleTimeString();
+              const sunsetTime = new Date(data.sys.sunset * 1000).toLocaleTimeString();
+              const currentTime = new Date();
+              const currentDate = currentTime.toLocaleDateString();
+              const currentTimeString = currentTime.toLocaleTimeString();
+      
+              // Create DOM elements to display weather information
+              const weatherDiv = document.createElement('div');
+              weatherDiv.classList.add('weather');
+              const weatherIconDiv = document.createElement('div');
+              weatherIconDiv.classList.add('icon');
+              const weatherIconImg = document.createElement('img');
+              weatherIconImg.classList.add('icon-img');
+              weatherIconImg.src = icon;
+              weatherIconDiv.appendChild(weatherIconImg);
+              const weatherDescriptionDiv = document.createElement('div');
+              weatherDescriptionDiv.classList.add('description');
+              weatherDescriptionDiv.textContent = description;
+              const weatherTempDiv = document.createElement('div');
+              weatherTempDiv.classList.add('temp');
+              weatherTempDiv.textContent = `${temp}°C`;
+              const weatherHumidityDiv = document.createElement('div');
+              weatherHumidityDiv.classList.add('humidity');
+              weatherHumidityDiv.textContent = humidity;
+              const weatherWindDiv = document.createElement('div');
+              weatherWindDiv.classList.add('wind');
+              weatherWindDiv.textContent = wind;
+              const weatherCityDiv = document.createElement('div');
+              weatherCityDiv.classList.add('city');
+              weatherCityDiv.textContent = city;
+              const weatherTimeDiv = document.createElement('div');
+              weatherTimeDiv.classList.add('time');
+              weatherTimeDiv.textContent = currentTimeString;
+              const weatherDateDiv = document.createElement('div');
+              weatherDateDiv.classList.add('date');
+              weatherDateDiv.textContent = currentDate;
+              const weatherSunriseDiv = document.createElement('div');
+              weatherSunriseDiv.classList.add('sunrise');
+              weatherSunriseDiv.textContent = `Sunrise: ${sunriseTime}`;
+              const weatherSunsetDiv = document.createElement('div');
+              weatherSunsetDiv.classList.add('sunset');
+              weatherSunsetDiv.textContent = `Sunset: ${sunsetTime}`;
+      
+              // Append weather information to the weatherDiv and add it to the section
+              weatherDiv.appendChild(weatherIconDiv);
+              weatherDiv.appendChild(weatherDescriptionDiv);
+              weatherDiv.appendChild(weatherTempDiv);
+              weatherDiv.appendChild(weatherHumidityDiv);
+              weatherDiv.appendChild(weatherWindDiv);
+              weatherDiv.appendChild(weatherCityDiv);
+              weatherDiv.appendChild(weatherTimeDiv);
+              weatherDiv.appendChild(weatherDateDiv);
+              weatherDiv.appendChild(weatherSunriseDiv);
+              weatherDiv.appendChild(weatherSunsetDiv);
+
+              section.appendChild(weatherDiv);
+
+                // Clear the input field
+                input.value = '';
+            })
+
+            .catch(err => {
+              // Display an error message if the city is not found
+              const errorDiv = document.createElement('div');
+              errorDiv.classList.add('error');
+              errorDiv.textContent = 'City not found';
+              section.appendChild(errorDiv);
+            });
+
+        });
+    </script>
+
+    <!-- <script>
         // button event listener
         // fetch data from api
         // display data on page
@@ -71,17 +171,17 @@
                     const weatherSunriseDiv = document.createElement('div')
                     const weatherSunsetDiv = document.createElement('div')
                     weatherDiv.classList.add('weather')
-                    weatherIconDiv.classList.add('weather')
-                    weatherIconImg.classList.add('weather')
-                    weatherDescriptionDiv.classList.add('weather')
-                    weatherTempDiv.classList.add('weather')
-                    weatherHumidityDiv.classList.add('weather')
-                    weatherWindDiv.classList.add('weather')
-                    weatherCityDiv.classList.add('weather')
-                    weatherTimeDiv.classList.add('weather')
-                    weatherDateDiv.classList.add('weather')
-                    weatherSunriseDiv.classList.add('weather')
-                    weatherSunsetDiv.classList.add('weather')
+                    weatherIconDiv.classList.add('icon')
+                    weatherIconImg.classList.add('icon-img')
+                    weatherDescriptionDiv.classList.add('description')
+                    weatherTempDiv.classList.add('temp')
+                    weatherHumidityDiv.classList.add('humidity')
+                    weatherWindDiv.classList.add('wind')
+                    weatherCityDiv.classList.add('city')
+                    weatherTimeDiv.classList.add('time')
+                    weatherDateDiv.classList.add('date')
+                    weatherSunriseDiv.classList.add('sunrise')
+                    weatherSunsetDiv.classList.add('sunset')
                     weatherIconImg.src = weatherIcon
                     weatherIconDiv.appendChild(weatherIconImg)
                     weatherDescriptionDiv.textContent = weatherDescription
@@ -111,7 +211,7 @@
         
 
 
-    </script>
+    </script> -->
 </body>
 </html>
 
