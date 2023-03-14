@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visual Merge</title>
+    <style>
+        #visualization {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: flex-end;
+            width: 100%;
+            height: 100%;
+        }
+
+        .item {
+            width: 20px;
+            margin: 0 2px;
+            background-color: #000;
+        }
+    </style>
+</head>
+<body>
+    <div id="visualization">
+
+    </div>
+    <script>
+        // Merge Sort algorithm
+        function mergeSort(array) {
+        if (array.length <= 1) {
+            return array;
+        }
+
+        const midIndex = Math.floor(array.length / 2);
+        const leftArray = array.slice(0, midIndex);
+        const rightArray = array.slice(midIndex);
+
+        return mergeArrays(mergeSort(leftArray), mergeSort(rightArray));
+        }
+
+        // Merge two sorted arrays
+        function mergeArrays(leftArray, rightArray) {
+        let resultArray = [];
+        let leftIndex = 0;
+        let rightIndex = 0;
+
+        while (leftIndex < leftArray.length && rightIndex < rightArray.length) {
+            if (leftArray[leftIndex] < rightArray[rightIndex]) {
+            resultArray.push(leftArray[leftIndex]);
+            leftIndex++;
+            } else {
+            resultArray.push(rightArray[rightIndex]);
+            rightIndex++;
+            }
+        }
+
+        return resultArray.concat(leftArray.slice(leftIndex)).concat(rightArray.slice(rightIndex));
+        }
+
+        // Visualize the sorting process
+        function visualizeSort(array) {
+        const container = document.getElementById('visualization');
+
+        // Create a div element for each item in the array
+        for (let i = 0; i < array.length; i++) {
+            const item = document.createElement('div');
+            item.classList.add('item');
+            item.style.height = array[i] + 'px';
+            container.appendChild(item);
+        }
+
+        // Perform Merge Sort and update the visual representation after each step
+        const steps = [];
+
+        function mergeSortStep(array) {
+            if (array.length <= 1) {
+            return array;
+            }
+
+            const midIndex = Math.floor(array.length / 2);
+            const leftArray = array.slice(0, midIndex);
+            const rightArray = array.slice(midIndex);
+
+            const resultArray = mergeArrays(mergeSortStep(leftArray), mergeSortStep(rightArray));
+            steps.push(resultArray);
+            return resultArray;
+        }
+
+        mergeSortStep(array);
+
+        // Animate the sorting process
+        let stepIndex = 0;
+        const items = document.querySelectorAll('.item');
+
+        function animateStep() {
+            const step = steps[stepIndex];
+
+            for (let i = 0; i < step.length; i++) {
+            items[i].style.height = step[i] + 'px';
+            }
+
+            stepIndex++;
+
+            if (stepIndex < steps.length) {
+            setTimeout(animateStep, 100);
+            }
+        }
+
+        animateStep();
+        }
+
+        // Example usage
+        const array = Array.from({ length: 40 }, () => Math.floor(Math.random() * 100));
+        visualizeSort(array);
+    </script>
+</body>
+</html>
