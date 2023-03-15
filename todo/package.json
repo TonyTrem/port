@@ -16,7 +16,6 @@
   },
   "dependencies": {
     "css-loader": "^6.7.3",
-    "fullcalendar": "^6.1.4",
     "style-loader": "^3.3.1"
   }
 }

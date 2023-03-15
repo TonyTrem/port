@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knights Travails</title>
+</head>
+<body>
+    <script>
+        //         Your task is to build a function knightMoves that shows the shortest possible way to get from one square to another by outputting all squares the knight will stop on along the way.
+
+        // You can think of the board as having 2-dimensional coordinates. Your function would therefore look like:
+
+        // knightMoves([0,0],[1,2]) == [[0,0],[1,2]]
+        // knightMoves([0,0],[3,3]) == [[0,0],[1,2],[3,3]]
+        // knightMoves([3,3],[0,0]) == [[3,3],[1,2],[0,0]]
+        // Put together a script that creates a game board and a knight.
+        // Treat all possible moves the knight could make as children in a tree. Don’t allow any moves to go off the board.
+        // Decide which search algorithm is best to use for this case. Hint: one of them could be a potentially infinite series.
+        // Use the chosen search algorithm to find the shortest path between the starting square (or node) and the ending square. Output what that full path looks like, e.g.:
+        //   > knightMoves([3,3],[4,3])
+        //   => You made it in 3 moves!  Here's your path:
+        //     [3,3]
+        //     [4,5]
+        //     [2,4]
+        //     [4,3]
+
+        knightMoves = (start, end) => {
+            let moves = [];
+            let x = start[0];
+            let y = start[1];
+            let x2 = end[0];
+            let y2 = end[1];
+            let x3 = x2 - x;
+            let y3 = y2 - y;
+            let x4 = x3 / 2;
+            let y4 = y3 / 2;
+            let x5 = x + x4;
+            let y5 = y + y4;
+            moves.push([x, y]);
+            moves.push([x5, y5]);
+            moves.push([x2, y2]);
+            return moves;
+        }
+
+
+        console.log(knightMoves([0, 0], [1, 2]));
+        console.log(knightMoves([0, 0], [3, 3]));
+        console.log(knightMoves([3, 3], [0, 0]));
+        console.log(knightMoves([3, 3], [4, 3]));
+
+
+
+    </script>
+</body>
+</html>
