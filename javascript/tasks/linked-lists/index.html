@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linked Lists</title>
+</head>
+<body>
+    <script>
+        // LinkedList Factory
+        function LinkedList() {
+            this.head = null;
+            this.tail = null;
+        }
+
+        // Node Factory containing a value function and a link to nextNode, both are null by default
+        function Node(value, nextNode) {
+            this.value = value;
+            this.nextNode = nextNode;
+        }
+
+        // append(value) adds a new node containing value to the end of the list
+        LinkedList.prototype.append = function(value) {
+            // create a new node
+            let newNode = new Node(value, null);
+            // if the list is empty, set the head and tail to the new node
+            if (this.head === null) {
+                this.head = newNode;
+                this.tail = newNode;
+            } else {
+                // otherwise, set the nextNode of the tail to the new node and set the tail to the new node
+                this.tail.nextNode = newNode;
+                this.tail = newNode;
+            }
+        }
+
+        // prepend(value) adds a new node containing value to the beginning of the list
+        LinkedList.prototype.prepend = function(value) {
+            // create a new node
+            let newNode = new Node(value, null);
+            // if the list is empty, set the head and tail to the new node
+            if (this.head === null) {
+                this.head = newNode;
+                this.tail = newNode;
+            } else {
+                // otherwise, set the nextNode of the new node to the head and set the head to the new node
+                newNode.nextNode = this.head;
+                this.head = newNode;
+            }
+        }
+
+        // size returns the number of nodes in the list
+        LinkedList.prototype.size = function() {
+            // if the list is empty, return 0
+            if (this.head === null) {
+                return 0;
+            } else {
+                // otherwise, set the current node to the head and set the size to 1
+                let currentNode = this.head;
+                let size = 1;
+                // while the current node has a nextNode, set the current node to the nextNode and increment the size
+                while (currentNode.nextNode !== null) {
+                    currentNode = currentNode.nextNode;
+                    size++;
+                }
+                // return the size
+                return size;
+            }
+        }
+
+        // head returns the value of the first node in the list
+        LinkedList.prototype.head = function() {
+            // if the list is empty, return null
+            if (this.head === null) {
+                return null;
+            } else {
+                // otherwise, return the value of the head
+                return this.head.value;
+            }
+        }
+
+        // tail returns the value of the last node in the list
+        LinkedList.prototype.tail = function() {
+            // if the list is empty, return null
+            if (this.tail === null) {
+                return null;
+            } else {
+                // otherwise, return the value of the tail
+                return this.tail.value;
+            }
+        }
+
+        // contains(value) returns true if the list contains a node with the specified value
+        LinkedList.prototype.contains = function(value) {
+            // if the list is empty, return false
+            if (this.head === null) {
+                return false;
+            } else {
+                // otherwise, set the current node to the head
+                let currentNode = this.head;
+                // while the current node has a nextNode, check if the value of the current node is equal to the specified value
+                while (currentNode.nextNode !== null) {
+                    if (currentNode.value === value) {
+                        // if the value of the current node is equal to the specified value, return true
+                        return true;
+                    } else {
+                        // otherwise, set the current node to the nextNode
+                        currentNode = currentNode.nextNode;
+                    }
+                }
+                // if the value of the current node is equal to the specified value, return true
+                if (currentNode.value === value) {
+                    return true;
+                } else {
+                    // otherwise, return false
+                    return false;
+                }
+            }
+        }
+
+        // find(value) returns the first node with the specified value
+        LinkedList.prototype.find = function(value) {
+            // if the list is empty, return null
+            if (this.head === null) {
+                return null;
+            } else {
+                // otherwise, set the current node to the head
+                let currentNode = this.head;
+                // while the current node has a nextNode, check if the value of the current node is equal to the specified value
+                while (currentNode.nextNode !== null) {
+                    if (currentNode.value === value) {
+                        // if the value of the current node is equal to the specified value, return the current node
+                        return currentNode;
+                    } else {
+                        // otherwise, set the current node to the nextNode
+                        currentNode = currentNode.nextNode;
+                    }
+                }
+                // if the value of the current node is equal to the specified value, return the current node
+                if (currentNode.value === value) {
+                    return currentNode;
+                } else {
+                    // otherwise, return null
+                    return null;
+                }
+            }
+        }
+
+        // toString represents your LinkedList objects as strings, so you can print them out and preview them in the console.  The format should be: (head value) -> (next value) -> (next value) -> (tail value) -> null
+        LinkedList.prototype.toString = function() {
+            // if the list is empty, return null
+            if (this.head === null) {
+                return null;
+            } else {
+                // otherwise, set the current node to the head and set the string to the value of the head
+                let currentNode = this.head;
+                let string = currentNode.value;
+                // while the current node has a nextNode, set the current node to the nextNode and add the value of the current node to the string
+                while (currentNode.nextNode !== null) {
+                    currentNode = currentNode.nextNode;
+                    string += ' -> ' + currentNode.value;
+                }
+                // add null to the string and return the string
+                string += ' -> null';
+                return string;
+            }
+        }
+
+        // insertAt(index, value) inserts a new node with specified value at the specified index
+        LinkedList.prototype.insertAt = function(index, value) {
+            // if the list is empty, return null
+            if (this.head === null) {
+                return null;
+            } else {
+                // otherwise, set the current node to the head and set the size to 1
+                let currentNode = this.head;
+                let size = 1;
+                // while the current node has a nextNode, set the current node to the nextNode and increment the size
+                while (currentNode.nextNode !== null) {
+                    currentNode = currentNode.nextNode;
+                    size++;
+                }
+                // if the specified index is greater than the size, return null
+                if (index > size) {
+                    return null;
+                } else {
+                    // otherwise, set the current node to the head and set the size to 1
+                    currentNode = this.head;
+                    size = 1;
+                    // while the current node has a nextNode and the size is less than the specified index, set the current node to the nextNode and increment the size
+                    while (currentNode.nextNode !== null && size < index) {
+                        currentNode = currentNode.nextNode;
+                        size++;
+                    }
+                    // create a new node
+                    let newNode = new Node(value, null);
+                    // if the specified index is 1, set the nextNode of the new node to the head and set the head to the new node
+                    if (index === 1) {
+                        newNode.nextNode = this.head;
+                        this.head = newNode;
+                    } else {
+                        // otherwise, set the nextNode of the new node to the nextNode of the current node and set the nextNode of the current node to the new node
+                        newNode.nextNode = currentNode.nextNode;
+                        currentNode.nextNode = newNode;
+                    }
+                }
+            }
+        }
+
+        // removeAt(index) removes the node at the specified index
+        LinkedList.prototype.removeAt = function(index) {
+            // if the list is empty, return null
+            if (this.head === null) {
+                return null;
+            } else {
+                // otherwise, set the current node to the head and set the size to 1
+                let currentNode = this.head;
+                let size = 1;
+                // while the current node has a nextNode, set the current node to the nextNode and increment the size
+                while (currentNode.nextNode !== null) {
+                    currentNode = currentNode.nextNode;
+                    size++;
+                }
+                // if the specified index is greater than the size, return null
+                if (index > size) {
+                    return null;
+                } else {
+                    // otherwise, set the current node to the head and set the size to 1
+                    currentNode = this.head;
+                    size = 1;
+                    // while the current node has a nextNode and the size is less than the specified index, set the current node to the nextNode and increment the size
+                    while (currentNode.nextNode !== null && size < index) {
+                        currentNode = currentNode.nextNode;
+                        size++;
+                    }
+                    // if the specified index is 1, set the head to the nextNode of the head
+                    if (index === 1) {
+                        this.head = this.head.nextNode;
+                    } else {
+                        // otherwise, set the nextNode of the current node to the nextNode of the nextNode of the current node
+                        currentNode.nextNode = currentNode.nextNode.nextNode;
+                    }
+                }
+            }
+        }
+
+        // remove(value) removes the first node with the specified value
+        LinkedList.prototype.remove = function(value) {
+            // if the list is empty, return null
+            if (this.head === null) {
+                return null;
+            } else {
+                // otherwise, set the current node to the head and set the size to 1
+                let currentNode = this.head;
+                let size = 1;
+                // while the current node has a nextNode, set the current node to the nextNode and increment the size
+                while (currentNode.nextNode !== null) {
+                    currentNode = currentNode.nextNode;
+                    size++;
+                }
+                // set the current node to the head and set the size to 1
+                currentNode = this.head;
+                size = 1;
+                // while the current node has a nextNode and the value of the current node is not equal to the specified value, set the current node to the nextNode and increment the size
+                while (currentNode.nextNode !== null && currentNode.value !== value) {
+                    currentNode = currentNode.nextNode;
+                    size++;
+                }
+                // if the value of the current node is equal to the specified value, remove the node at the specified index
+                if (currentNode.value === value) {
+                    this.removeAt(size);
+                }
+            }
+        }
+
+        // clear() removes all nodes from the list
+        LinkedList.prototype.clear = function() {
+            // set the head to null
+            this.head = null;
+        }
+
+        // test implementation
+
+        let list = new LinkedList();
+        list.append(1);
+        list.append(2);
+        list.append(3);
+        list.append(4);
+        list.append(5);
+        console.log(list.toString()); // 1 -> 2 -> 3 -> 4 -> 5 -> null
+        list.insertAt(3, 6);
+        console.log(list.toString()); // 1 -> 2 -> 6 -> 3 -> 4 -> 5 -> null
+        list.removeAt(4);
+        console.log(list.toString()); // 1 -> 2 -> 6 -> 4 -> 5 -> null
+        list.remove(6);
+        console.log(list.toString()); // 1 -> 2 -> 4 -> 5 -> null
+
+
+    </script>
+</body>
+</html>

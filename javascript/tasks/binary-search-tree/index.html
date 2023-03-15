@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binary Search Tree</title>
+</head>
+<body>
+    <script>
+        class Node {
+            constructor(value) {
+                this.value = value;
+                this.left = null;
+                this.right = null;
+            }
+        }
+
+        class Tree {
+            constructor(array) {
+                this.root = this.buildTree(array);
+            }
+
+            buildTree(array) {
+                // Sort the array
+                array.sort((a, b) => a - b);
+                // Remove duplicates
+                array = [...new Set(array)];
+                // Create a root node
+                const root = new Node(array[0]);
+                // Create a helper function to recursively build the tree
+                const build = (node, array) => {
+                    // Base case
+                    if (array.length === 0) return;
+                    // Find the middle index
+                    const middle = Math.floor(array.length / 2);
+                    // Create a left node
+                    const left = new Node(array[middle - 1]);
+                    // Create a right node
+                    const right = new Node(array[middle + 1]);
+                    // Set the left and right nodes
+                    node.left = left;
+                    node.right = right;
+                    // Recursively call the build function
+                    build(left, array.slice(0, middle));
+                    build(right, array.slice(middle + 1));
+                }
+                // Call the helper function
+                build(root, array);
+                // Return the root node
+                return root;
+            }
+        }
+
+        Tree.prototype.insert = function(value) {
+            // Create a new node
+            const newNode = new Node(value);
+            // Create a helper function to recursively traverse the tree
+            const traverse = (node) => {
+                // Base case
+                if (node === null) return newNode;
+                // If the value is less than the node value
+                if (value < node.value) {
+                    // Traverse the left side of the tree
+                    node.left = traverse(node.left);
+                } else {
+                    // Traverse the right side of the tree
+                    node.right = traverse(node.right);
+                }
+                // Return the node
+                return node;
+            }
+            // Call the helper function
+            traverse(this.root);
+        }
+
+        Tree.prototype.delete = function(value) {
+            // Create a helper function to recursively traverse the tree
+            const traverse = (node) => {
+                // Base case
+                if (node === null) return null;
+                // If the value is less than the node value
+                if (value < node.value) {
+                    // Traverse the left side of the tree
+                    node.left = traverse(node.left);
+                } else if (value > node.value) {
+                    // Traverse the right side of the tree
+                    node.right = traverse(node.right);
+                } else {
+                    // If the node has no children
+                    if (node.left === null && node.right === null) {
+                        // Return null
+                        return null;
+                    }
+                    // If the node has one child
+                    if (node.left === null) {
+                        // Return the right child
+                        return node.right;
+                    } else if (node.right === null) {
+                        // Return the left child
+                        return node.left;
+                    }
+                    // If the node has two children
+                    // Find the minimum value in the right subtree
+                    let min = node.right;
+                    while (min.left !== null) {
+                        min = min.left;
+                    }
+                    // Set the node value to the minimum value
+                    node.value = min.value;
+                    // Delete the minimum value
+                    node.right = traverse(node.right);
+                }
+                // Return the node
+                return node;
+            }
+            // Call the helper function
+            traverse(this.root);
+        }
+
+        Tree.prototype.levelOrder = function(callback) {
+            // Create an array to store the values
+            const values = [];
+            // Create a queue to store the nodes
+            const queue = [];
+            // Add the root node to the queue
+            queue.push(this.root);
+            // While the queue is not empty
+            while (queue.length > 0) {
+                // Remove the first node from the queue
+                const node = queue.shift();
+                // If a callback function is provided
+                if (callback) {
+                    // Call the callback function
+                    callback(node);
+                } else {
+                    // Add the node value to the values array
+                    values.push(node.value);
+                }
+                // If the node has a left child
+                if (node.left) {
+                    // Add the left child to the queue
+                    queue.push(node.left);
+                }
+                // If the node has a right child
+                if (node.right) {
+                    // Add the right child to the queue
+                    queue.push(node.right);
+                }
+            }
+            // Return the values array
+            return values;
+        }
+        
+        Tree.prototype.preOrder = function(callback) {
+            // Create an array to store the values
+            const values = [];
+            // Create a helper function to recursively traverse the tree
+            const traverse = (node) => {
+                // If a callback function is provided
+                if (callback) {
+                    // Call the callback function
+                    callback(node);
+                } else {
+                    // Add the node value to the values array
+                    values.push(node.value);
+                }
+                // If the node has a left child
+                if (node.left) {
+                    // Traverse the left side of the tree
+                    traverse(node.left);
+                }
+                // If the node has a right child
+                if (node.right) {
+                    // Traverse the right side of the tree
+                    traverse(node.right);
+                }
+            }
+            // Call the helper function
+            traverse(this.root);
+            // Return the values array
+            return values;
+        }
+
+        Tree.prototype.postOrder = function(callback) {
+            // Create an array to store the values
+            const values = [];
+            // Create a helper function to recursively traverse the tree
+            const traverse = (node) => {
+                // If the node has a left child
+                if (node.left) {
+                    // Traverse the left side of the tree
+                    traverse(node.left);
+                }
+                // If the node has a right child
+                if (node.right) {
+                    // Traverse the right side of the tree
+                    traverse(node.right);
+                }
+                // If a callback function is provided
+                if (callback) {
+                    // Call the callback function
+                    callback(node);
+                } else {
+                    // Add the node value to the values array
+                    values.push(node.value);
+                }
+            }
+            // Call the helper function
+            traverse(this.root);
+            // Return the values array
+            return values;
+        }
+
+        Tree.prototype.inOrder = function(callback) {
+            // Create an array to store the values
+            const values = [];
+            // Create a helper function to recursively traverse the tree
+            const traverse = (node) => {
+                // If the node has a left child
+                if (node.left) {
+                    // Traverse the left side of the tree
+                    traverse(node.left);
+                }
+                // If a callback function is provided
+                if (callback) {
+                    // Call the callback function
+                    callback(node);
+                } else {
+                    // Add the node value to the values array
+                    values.push(node.value);
+                }
+                // If the node has a right child
+                if (node.right) {
+                    // Traverse the right side of the tree
+                    traverse(node.right);
+                }
+            }
+            // Call the helper function
+            traverse(this.root);
+            // Return the values array
+            return values;
+        }
+
+        Tree.prototype.height = function(node = this.root) {
+            // If the node has no children
+            if (node.left === null && node.right === null) {
+                // Return 0
+                return 0;
+            }
+            // If the node has one child
+            if (node.left === null) {
+                // Return the height of the right child
+                return 1 + this.height(node.right);
+            } else if (node.right === null) {
+                // Return the height of the left child
+                return 1 + this.height(node.left);
+            }
+            // Return the height of the tallest child
+            return 1 + Math.max(this.height(node.left), this.height(node.right));
+        }
+
+        Tree.prototype.depth = function(node = this.root) {
+            // If the node has no parent
+            if (node.parent === null) {
+                // Return 0
+                return 0;
+            }
+            // Return 1 + the depth of the parent
+            return 1 + this.depth(node.parent);
+        }
+
+        Tree.prototype.isBalanced = function(node = this.root) {
+            // If the node has no children
+            if (node.left === null && node.right === null) {
+                // Return true
+                return true;
+            }
+            // If the node has one child
+            if (node.left === null) {
+                // Return true if the right child is balanced and the height of the right child is 0
+                return this.isBalanced(node.right) && this.height(node.right) === 0;
+            } else if (node.right === null) {
+                // Return true if the left child is balanced and the height of the left child is 0
+                return this.isBalanced(node.left) && this.height(node.left) === 0;
+            }
+            // Return true if the left child is balanced and the right child is balanced and the height of the left child is 1 more than the height of the right child
+            return this.isBalanced(node.left) && this.isBalanced(node.right) && this.height(node.left) === this.height(node.right) + 1;
+        }
+
+        Tree.prototype.reBalance = function(node = this.root) {
+            // If the node has no children
+            if (node.left === null && node.right === null) {
+                // Return the node
+                return node;
+            }
+            // If the node has one child
+            if (node.left === null) {
+                // Return the node
+                return node;
+            } else if (node.right === null) {
+                // Return the node
+                return node;
+            }
+            // If the height of the left child is 2 more than the height of the right child
+            if (this.height(node.left) === this.height(node.right) + 2) {
+                // If the height of the left child's left child is 1 more than the height of the left child's right child
+                if (this.height(node.left.left) === this.height(node.left.right) + 1) {
+                    // Rotate the left child to the right
+                    this.rotateRight(node.left);
+                }
+                // Rotate the node to the left
+                this.rotateLeft(node);
+            } else if (this.height(node.right) === this.height(node.left) + 2) {
+                // If the height of the right child's right child is 1 more than the height of the right child's left child
+                if (this.height(node.right.right) === this.height(node.right.left) + 1) {
+                    // Rotate the right child to the left
+                    this.rotateLeft(node.right);
+                }
+                // Rotate the node to the right
+                this.rotateRight(node);
+            }
+            // Return the node
+            return node;
+        }
+
+        function randomArray(length) {
+            // create an empty array
+            const array = [];
+            // loop through the array
+            for (let i = 0; i < length; i++) {
+                // push a random number between 0 and 100 to the array
+                array.push(Math.floor(Math.random() * 100));
+            }
+            // return the array
+            return array;
+        }
+
+        // create a new tree with the random array
+        const tree = new Tree(randomArray(10));
+
+        // confirm balance
+        console.log(tree.isBalanced());
+
+        // print out all the elements in level, pre, post and inorder
+        console.log(tree.levelOrder());
+        console.log(tree.preOrder());
+        console.log(tree.postOrder());
+        console.log(tree.inOrder());
+
+        // unbalance the tree by adding several numbers > 100 in a loop
+        for (let i = 0; i < 10; i++) {
+            tree.insert(Math.floor(Math.random() * 100) + 100);
+        }
+
+        // confirm unbalance
+        console.log(tree.isBalanced());
+
+        // rebalance the tree
+        tree.reBalance();
+
+        // confirm balance
+        console.log(tree.isBalanced());
+
+        // print out all the elements in level, pre, post and inorder
+        console.log(tree.levelOrder());
+        console.log(tree.preOrder());
+        console.log(tree.postOrder());
+        console.log(tree.inOrder());
+            
+    </script>
+</body>
+</html>
